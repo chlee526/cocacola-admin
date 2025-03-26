@@ -14,7 +14,6 @@ node_modules
 .npmrc
 .env
 
-
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
@@ -27,4 +26,4 @@ node_modules
 *.sw?
 
 *storybook.log
-# .vercel
+.vercel/*
