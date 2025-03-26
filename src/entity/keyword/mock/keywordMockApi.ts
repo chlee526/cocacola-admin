@@ -1,4 +1,4 @@
-import { http, HttpResponse, delay } from 'msw';
+import { http, HttpResponse } from 'msw';
 const KEYWORD = import.meta.env.VITE_BASE_API + import.meta.env.VITE_API_KEYWORD;
 const KEYWORD_EXCLUSION = import.meta.env.VITE_BASE_API + import.meta.env.VITE_API_KEYWORD_EXKEYWORD;
 const KEYWORD_CATEGORY = import.meta.env.VITE_BASE_API + import.meta.env.VITE_API_KEYWORD_CATEGORY;

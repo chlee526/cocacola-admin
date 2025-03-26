@@ -27,3 +27,4 @@ node_modules
 *.sw?
 
 *storybook.log
+# .vercel

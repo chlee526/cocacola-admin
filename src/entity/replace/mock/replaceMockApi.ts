@@ -1,7 +1,7 @@
-import { http, HttpResponse, delay } from 'msw';
+import { http, HttpResponse } from 'msw';
 
 const replaceMockApi = [
-    http.get(import.meta.env.VITE_BASE_API + import.meta.env.VITE_API_REPLACE, async ({ request }) => {
+    http.get(import.meta.env.VITE_BASE_API + import.meta.env.VITE_API_REPLACE, async ({}) => {
         // await delay(2000);
         return HttpResponse.json({
             result: {
@@ -203,7 +203,7 @@ const replaceMockApi = [
             },
         });
     }),
-    http.post(import.meta.env.VITE_BASE_API + import.meta.env.VITE_API_REPLACE, async ({ request }) => {
+    http.post(import.meta.env.VITE_BASE_API + import.meta.env.VITE_API_REPLACE, async ({}) => {
         // await delay(2000);
         return HttpResponse.json({
             result: {
@@ -214,7 +214,7 @@ const replaceMockApi = [
             },
         });
     }),
-    http.put(import.meta.env.VITE_BASE_API + import.meta.env.VITE_API_REPLACE, async ({ request }) => {
+    http.put(import.meta.env.VITE_BASE_API + import.meta.env.VITE_API_REPLACE, async ({}) => {
         // await delay(2000);
         return HttpResponse.json({
             result: {
@@ -226,7 +226,7 @@ const replaceMockApi = [
         });
     }),
 
-    http.delete(import.meta.env.VITE_BASE_API + import.meta.env.VITE_API_REPLACE, async ({ request }) => {
+    http.delete(import.meta.env.VITE_BASE_API + import.meta.env.VITE_API_REPLACE, async ({}) => {
         // await delay(2000);
 
         return HttpResponse.json({

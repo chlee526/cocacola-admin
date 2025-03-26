@@ -68,7 +68,7 @@ const useGetAuthListQuery = (params: GetAuthRequestModel): UseQueryResult<BoardD
 // 특정 권한 조회
 const useGetAuthMutation = () => {
     return useMutation({
-        mutationFn: async (seq: number) => {
+        mutationFn: async () => {
             try {
                 const response = await getAuthAsync(24);
                 const { result } = response.data;

@@ -43,7 +43,7 @@ const useGetMemberList = (searchParam: GetMembersRequestModel): UseQueryResult<B
 };
 
 // 특정 사용자 조회
-const useGetParticularMember = (memberSeq: number) => {
+const useGetParticularMember = () => {
     // const param = { memberSeq };
     const param = { memberSeq: 116 }; // mockup 데이터
     const { showAlert } = useAlert();

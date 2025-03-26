@@ -1,7 +1,7 @@
-import { http, HttpResponse, delay } from 'msw';
+import { http, HttpResponse } from 'msw';
 
 const commonMockApi = [
-    http.get(import.meta.env.VITE_BASE_API + import.meta.env.VITE_API_COMMON, async ({ request }) => {
+    http.get(import.meta.env.VITE_BASE_API + import.meta.env.VITE_API_COMMON, async ({}) => {
         // await delay(2000);
         return HttpResponse.json({
             result: {

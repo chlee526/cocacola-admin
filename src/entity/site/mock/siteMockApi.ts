@@ -1,4 +1,4 @@
-import { http, HttpResponse, delay } from 'msw';
+import { http, HttpResponse } from 'msw';
 const SITE_ALL = import.meta.env.VITE_BASE_API + import.meta.env.VITE_API_SITE_ALL_LIST;
 const SITE_MAPPING = import.meta.env.VITE_BASE_API + import.meta.env.VITE_API_SITE_MAPPING;
 const SITE_CHNS = import.meta.env.VITE_BASE_API + import.meta.env.VITE_API_SITE_CHNS;

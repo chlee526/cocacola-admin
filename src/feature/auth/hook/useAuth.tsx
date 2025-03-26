@@ -32,12 +32,11 @@ const useLogin = () => {
         getValues,
         formState: { isValid, isDirty },
     } = useForm({
-        defaultValues: { id: '', pw: '' },
+        defaultValues: { id: 'test', pw: '1234' },
         mode: 'onChange',
     });
 
     const handleLoginSuccess = () => {
-        console.log('로그인 성공!!!');
         setLoginState(true);
         queryClient.invalidateQueries({ queryKey: ['userInfo', 'myAuth'] });
     };

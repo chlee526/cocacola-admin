@@ -1,4 +1,4 @@
-import { http, HttpResponse, delay } from 'msw';
+import { http, HttpResponse } from 'msw';
 const URL = import.meta.env.VITE_BASE_API + import.meta.env.VITE_API_EXCLUSION;
 const exclusionMockApi = [
     // 전체 제외 키워드 조회

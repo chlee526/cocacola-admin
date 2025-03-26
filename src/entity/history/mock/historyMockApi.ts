@@ -1,4 +1,4 @@
-import { http, HttpResponse, delay } from 'msw';
+import { http, HttpResponse } from 'msw';
 const URL = import.meta.env.VITE_BASE_API + import.meta.env.VITE_API_HISTORY;
 const historyMockApi = [
     // 로그 조회

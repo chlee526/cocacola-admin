@@ -90,7 +90,8 @@ const SaveEdit = ({ selectedItem: ownPropsSelectedItem }: OwnProps) => {
     useEffect(() => {
         if (selectedItem) {
             // 선택된 아이템이 있는 경우 API 호출
-            mutate(selectedItem.seq);
+            // mutate(selectedItem.seq);
+            mutate();
             setEmailModify(false);
         } else {
             // 없는 경우 reset
@@ -180,7 +181,7 @@ const SaveEdit = ({ selectedItem: ownPropsSelectedItem }: OwnProps) => {
                                                     <Switch
                                                         color="default"
                                                         checked={value === 'Y'}
-                                                        onChange={e => onChange(e.target.checked ? 'Y' : 'N')}
+                                                        onChange={(e) => onChange(e.target.checked ? 'Y' : 'N')}
                                                     />
                                                 }
                                             />
@@ -188,7 +189,7 @@ const SaveEdit = ({ selectedItem: ownPropsSelectedItem }: OwnProps) => {
                                     }}
                                 />
                             </Stack>
-                            {InputFieldSettings.map(fieldItem => {
+                            {InputFieldSettings.map((fieldItem) => {
                                 return (
                                     <Stack key={fieldItem.id}>
                                         <Controller
@@ -205,7 +206,7 @@ const SaveEdit = ({ selectedItem: ownPropsSelectedItem }: OwnProps) => {
                                                             required={!!fieldItem.rules?.required}
                                                             labelPlacement="start"
                                                             label={fieldItem.label}
-                                                            onClick={e => {
+                                                            onClick={(e) => {
                                                                 e.preventDefault();
                                                             }}
                                                             control={

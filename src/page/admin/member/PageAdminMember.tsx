@@ -29,7 +29,8 @@ const PageAdminMember = () => {
     const { getBoardData, getSearchParam, setBoardData, setSearchParam } = useMemberPageStore();
 
     const memberListQuery = useGetMemberList(getSearchParam);
-    const particularMemberQuery = useGetParticularMember(Number(selectedItem?.seq));
+    // const particularMemberQuery = useGetParticularMember(Number(selectedItem?.seq));
+    const particularMemberQuery = useGetParticularMember();
     const joinMemberMutation = useJoinMember();
     const updateMemberMutation = useUpdateMember();
     const queryClient = useQueryClient();
@@ -96,7 +97,7 @@ const PageAdminMember = () => {
                     id: 'regDate',
                     label: '등록일',
                     width: '180px',
-                    format: value => dateToString(String(value), 'YYYY-MM-DD hh:mm:ss'),
+                    format: (value) => dateToString(String(value), 'YYYY-MM-DD hh:mm:ss'),
                     useSort: true,
                     useColumns: true,
                     align: 'center',
@@ -146,7 +147,7 @@ const PageAdminMember = () => {
     useEffect(() => {
         const { isError, data: particularMemberData } = particularMemberQuery; // 특정 사용자 조회 api
 
-        const boardMemberData = getBoardData().list.find(item => item?.seq === particularMemberData?.seq); // 목록 데이터의 사용자 정보
+        const boardMemberData = getBoardData().list.find((item) => item?.seq === particularMemberData?.seq); // 목록 데이터의 사용자 정보
 
         if (isError) {
             showAlert('사용자 정보가 존재하지 않아 목록을 다시 불러옵니다.', 'info');
@@ -155,7 +156,7 @@ const PageAdminMember = () => {
         }
 
         if (particularMemberData && boardMemberData) {
-            const isChanged = Object.keys(boardMemberData).some(key => {
+            const isChanged = Object.keys(boardMemberData).some((key) => {
                 const boardValue = String(boardMemberData[key as keyof MembersModel] || '');
                 const particularValue = String(particularMemberData[key as keyof MembersModel] || '');
                 return boardValue !== particularValue;

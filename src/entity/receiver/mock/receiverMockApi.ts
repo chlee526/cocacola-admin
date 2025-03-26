@@ -1,4 +1,4 @@
-import { http, HttpResponse, delay } from 'msw';
+import { http, HttpResponse } from 'msw';
 const URL = import.meta.env.VITE_BASE_API + import.meta.env.VITE_API_RECEIVER;
 const RECEIVER_DUPLICATE = import.meta.env.VITE_BASE_API + import.meta.env.VITE_API_RECEIVER_DUPLICATE;
 const RECEIVER_EXCEL = import.meta.env.VITE_BASE_API + import.meta.env.VITE_API_RECEIVER_EXCEL;

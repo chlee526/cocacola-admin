@@ -43,8 +43,8 @@ const getAuthMenuList = (selData: AuthBoardDataModel) => {
     return (
         (selData &&
             (selData.menuAuthList as SelectedAuthModel[])
-                .map(menuAuthList => {
-                    return menuAuthList.menuDto?.child.map(item => ({
+                .map((menuAuthList) => {
+                    return menuAuthList.menuDto?.child.map((item) => ({
                         menuSeq: item?.menuDto?.menuSeq,
                         level: transAuthToLevel(item.methods),
                     }));
@@ -95,7 +95,8 @@ const SaveEdit = ({ selectedItem: ownPropsSelectedItem }: OwnProps) => {
     useEffect(() => {
         if (selectedItem) {
             // 선택된 아이템이 있는 경우 API 호출
-            mutate(selectedItem.seq);
+            // mutate(selectedItem.seq);
+            mutate();
         } else {
             // 없는 경우 reset
             reset(defaultValues);

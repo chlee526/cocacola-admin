@@ -47,7 +47,7 @@ const useGetReceiverListQuery = (
 // 특정 권한 조회
 const useGetReceiverMutation = () => {
     return useMutation({
-        mutationFn: async (params: number) => {
+        mutationFn: async () => {
             try {
                 const response = await getReceiverAsync(58);
                 const { result } = response.data;

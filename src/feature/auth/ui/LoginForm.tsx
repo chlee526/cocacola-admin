@@ -9,15 +9,14 @@ import { useLogin } from '../hook/useAuth';
 import { Box, Button, CircularProgress, Dialog, DialogTitle, DialogActions } from '@mui/material';
 
 const LoginForm = () => {
-    const { loginMutation, openDialog, setOpenDialog, handleConfirm, control, handleSubmit, isValid, isDirty } = useLogin();
+    const { loginMutation, openDialog, setOpenDialog, handleConfirm, control, handleSubmit, isValid } = useLogin();
     const [isOnChange, setIsOnChange] = useState({ id: false, pw: false });
 
     const onSubmit = () => {
-       
         loginMutation.mutate();
     };
 
-    const isFormValid = useMemo(() => isValid && isDirty, [isValid, isDirty]);
+    const isFormValid = useMemo(() => isValid, [isValid]);
 
     return (
         <>
@@ -40,7 +39,7 @@ const LoginForm = () => {
                                 error={!!error}
                                 errorMessage={isOnChange.id && error ? error.message : ''}
                                 value={[value, onChange]}
-                                onChange={() => setIsOnChange(prev => ({ ...prev, id: true }))}
+                                onChange={() => setIsOnChange((prev) => ({ ...prev, id: true }))}
                             />
                         </div>
                     )}
@@ -64,7 +63,7 @@ const LoginForm = () => {
                                 error={!!error}
                                 errorMessage={isOnChange.pw && error ? error.message : ''}
                                 value={[value, onChange]}
-                                onChange={() => setIsOnChange(prev => ({ ...prev, pw: true }))}
+                                onChange={() => setIsOnChange((prev) => ({ ...prev, pw: true }))}
                             />
                         </div>
                     )}

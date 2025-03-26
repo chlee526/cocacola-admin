@@ -1,8 +1,8 @@
-import { http, HttpResponse, delay } from 'msw';
+import { http, HttpResponse } from 'msw';
 
 const memberMockApi = [
     // 사용자 조회
-    http.get(import.meta.env.VITE_BASE_API + import.meta.env.VITE_API_MEMBERS, async ({ request }) => {
+    http.get(import.meta.env.VITE_BASE_API + import.meta.env.VITE_API_MEMBERS, async ({}) => {
         // await delay(2000);
         return HttpResponse.json({
             result: {
@@ -271,7 +271,7 @@ const memberMockApi = [
     }),
 
     // 특정 사용자 조회
-    http.get(`${import.meta.env.VITE_BASE_API + import.meta.env.VITE_API_MEMBERS}/116`, async ({ request }) => {
+    http.get(`${import.meta.env.VITE_BASE_API + import.meta.env.VITE_API_MEMBERS}/116`, async ({}) => {
         return HttpResponse.json({
             result: {
                 code: '200',
@@ -297,7 +297,7 @@ const memberMockApi = [
     }),
 
     // 사용자 등록
-    http.post(import.meta.env.VITE_BASE_API + import.meta.env.VITE_API_MEMBERS, async ({ request }) => {
+    http.post(import.meta.env.VITE_BASE_API + import.meta.env.VITE_API_MEMBERS, async ({}) => {
         // await delay(2000);
         return HttpResponse.json({
             result: {
@@ -307,7 +307,7 @@ const memberMockApi = [
             },
         });
     }),
-    http.put(import.meta.env.VITE_BASE_API + import.meta.env.VITE_API_MEMBERS, async ({ request }) => {
+    http.put(import.meta.env.VITE_BASE_API + import.meta.env.VITE_API_MEMBERS, async ({}) => {
         // await delay(2000);
         return HttpResponse.json({
             result: {
@@ -319,7 +319,7 @@ const memberMockApi = [
         });
     }),
 
-    http.delete(import.meta.env.VITE_BASE_API + import.meta.env.VITE_API_MEMBERS, async ({ request }) => {
+    http.delete(import.meta.env.VITE_BASE_API + import.meta.env.VITE_API_MEMBERS, async ({}) => {
         // await delay(2000);
 
         return HttpResponse.json({
@@ -333,7 +333,7 @@ const memberMockApi = [
     }),
 
     // 중복체크
-    http.get(import.meta.env.VITE_BASE_API + import.meta.env.VITE_API_MEMBERS_DUPLICATE, async ({ request }) => {
+    http.get(import.meta.env.VITE_BASE_API + import.meta.env.VITE_API_MEMBERS_DUPLICATE, async ({}) => {
         // await delay(2000);
 
         return HttpResponse.json({});

@@ -1,8 +1,8 @@
-import { http, HttpResponse, delay } from 'msw';
+import { http, HttpResponse } from 'msw';
 
 const menuMockApi = [
     //  메뉴 조회
-    http.get(import.meta.env.VITE_BASE_API + import.meta.env.VITE_API_ALL_MENU, async ({ request }) => {
+    http.get(import.meta.env.VITE_BASE_API + import.meta.env.VITE_API_ALL_MENU, async ({}) => {
         // await delay(2000);
         return HttpResponse.json({
             result: {

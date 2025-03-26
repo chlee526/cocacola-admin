@@ -1,4 +1,4 @@
-import { http, HttpResponse, delay } from 'msw';
+import { http, HttpResponse } from 'msw';
 
 const authMockApi = [
     // 중복 로그인
@@ -29,7 +29,7 @@ const authMockApi = [
     }),
 
     // 로그아웃
-    http.post(import.meta.env.VITE_BASE_API + import.meta.env.VITE_API_LOGOUT, async () => {
+    http.delete(import.meta.env.VITE_BASE_API + import.meta.env.VITE_API_LOGOUT, async () => {
         // await delay(3000);
         return new HttpResponse(null, {
             status: 200,
