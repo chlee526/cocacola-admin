@@ -5,12 +5,7 @@ import { useMutation, useQuery, useQueryClient, UseQueryResult } from '@tanstack
 
 import { useAlert } from '@/shared/store';
 
-import {
-    addReplaceAsync,
-    deleteReplaceAsync,
-    getReplacAsync,
-    updateReplaceAsync,
-} from '../api/replaceApi';
+import { addReplaceAsync, deleteReplaceAsync, getReplacAsync, updateReplaceAsync } from '../api/replaceApi';
 import {
     AddReplaceRequestModel,
     BoardDataModel,
@@ -27,16 +22,16 @@ const useAddReplace = () => {
 
     return useMutation({
         mutationFn: async (param: AddReplaceRequestModel[]) => {
-            const mutations = param.map(data => addReplaceAsync(data));
+            const mutations = param.map((data) => addReplaceAsync(data));
             return Promise.allSettled(mutations);
         },
-        onSuccess: data => {
+        onSuccess: (data) => {
             console.log('등록 성공', data);
 
             // 가장 마지막 쿼리만 호출
             queryClient.invalidateQueries({ queryKey: ['REPLACE_LIST'] });
         },
-        onError: err => {
+        onError: (err) => {
             console.error('등록 에러', err);
             showAlert('등록을 실패했습니다.');
         },
@@ -44,9 +39,7 @@ const useAddReplace = () => {
 };
 
 // read
-const useGetReplaceListQuery = (
-    params: GetReplaceRequestModel,
-): UseQueryResult<BoardDataModel, Error> =>
+const useGetReplaceListQuery = (params: GetReplaceRequestModel): UseQueryResult<BoardDataModel, Error> =>
     useQuery({
         queryKey: ['REPLACE_LIST', params],
         queryFn: async () => {
@@ -74,16 +67,16 @@ const useUpdateReplace = () => {
 
     return useMutation({
         mutationFn: async (params: UpdateReplaceRequestModel[]) => {
-            const mutations = params.map(data => updateReplaceAsync(data));
+            const mutations = params.map((data) => updateReplaceAsync(data));
             return Promise.allSettled(mutations);
         },
-        onSuccess: data => {
+        onSuccess: (data) => {
             console.log('수정 성공', data);
 
             // 가장 마지막 쿼리만 호출
             queryClient.invalidateQueries({ queryKey: ['REPLACE_LIST'] });
         },
-        onError: err => {
+        onError: (err) => {
             console.error('수정 에러', err);
             showAlert('수정을 실패했습니다.', 'error');
         },
@@ -97,13 +90,13 @@ const useDeleteReplace = () => {
 
     return useMutation({
         mutationFn: async (param: DeleteReplaceRequestModel) => deleteReplaceAsync(param),
-        onSuccess: data => {
+        onSuccess: (data) => {
             console.log('삭제 성공', data);
 
             // 가장 마지막 쿼리만 호출
             queryClient.invalidateQueries({ queryKey: ['REPLACE_LIST'] });
         },
-        onError: err => {
+        onError: (err) => {
             console.error('삭제에러', err);
             showAlert('삭제를 실패했습니다.');
         },
@@ -113,8 +106,7 @@ const useDeleteReplace = () => {
 // store
 const useSearhParameterStore = () => {
     const { searhParameter, setSearchParameter } = searchParameterStore();
-    const rowLimit =
-        usePersonalizationStore().getPersonalizationDataList('replace')?.rowLimit || 100;
+    const rowLimit = usePersonalizationStore().getPersonalizationDataList('replace')?.rowLimit || 100;
 
     const getSearchParameter: GetReplaceRequestModel = useMemo(() => {
         return {
@@ -133,10 +125,4 @@ const useSearhParameterStore = () => {
     };
 };
 
-export {
-    useGetReplaceListQuery,
-    useAddReplace,
-    useUpdateReplace,
-    useDeleteReplace,
-    useSearhParameterStore,
-};
+export { useGetReplaceListQuery, useAddReplace, useUpdateReplace, useDeleteReplace, useSearhParameterStore };

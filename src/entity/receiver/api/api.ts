@@ -11,10 +11,14 @@ import {
     PutReceiverRequestModel,
 } from '../model/model';
 
+const URL = import.meta.env.VITE_BASE_API + import.meta.env.VITE_API_RECEIVER;
+const RECEIVER_DUPLICATE = import.meta.env.VITE_BASE_API + import.meta.env.VITE_API_RECEIVER_DUPLICATE;
+const RECEIVER_EXCEL = import.meta.env.VITE_BASE_API + import.meta.env.VITE_API_RECEIVER_EXCEL;
+
 // 정보 수신자 목록
 const getReceiverListAsync = (param: GetReceiverRequestModel): Promise<AxiosResponse<GetReceiverResponseModel>> => {
     return request({
-        url: import.meta.env.VITE_API_RECEIVER,
+        url: URL,
         method: 'get',
         params: param,
     });
@@ -23,7 +27,7 @@ const getReceiverListAsync = (param: GetReceiverRequestModel): Promise<AxiosResp
 // 정보 수신자(단일)
 const getReceiverAsync = (param: number): Promise<AxiosResponse<GetReceiverResponseModel>> => {
     return request({
-        url: `${import.meta.env.VITE_API_RECEIVER}/${param}`,
+        url: `${URL}/${param}`,
         method: 'get',
     });
 };
@@ -31,7 +35,7 @@ const getReceiverAsync = (param: number): Promise<AxiosResponse<GetReceiverRespo
 // 정보 수신자 등록
 const postReceiverAsync = (param: PostReceiverRequestModel) => {
     return request({
-        url: import.meta.env.VITE_API_RECEIVER,
+        url: URL,
         method: 'post',
         data: param,
     });
@@ -40,7 +44,7 @@ const postReceiverAsync = (param: PostReceiverRequestModel) => {
 // 정보 수신자 수정
 const putReceiverAsync = (param: PutReceiverRequestModel) => {
     return request({
-        url: import.meta.env.VITE_API_RECEIVER,
+        url: URL,
         method: 'put',
         data: param,
     });
@@ -49,7 +53,7 @@ const putReceiverAsync = (param: PutReceiverRequestModel) => {
 // 권한 삭제
 const deleteReceiverAsync = (param: DeleteReceiverRequestModel) => {
     return request({
-        url: import.meta.env.VITE_API_RECEIVER,
+        url: URL,
         method: 'delete',
         data: param,
     });
@@ -58,7 +62,7 @@ const deleteReceiverAsync = (param: DeleteReceiverRequestModel) => {
 // 이메일 중복 검사
 const getReceiverDuplicateAsync = (param: GetReceiverDuplicateRequestModel) => {
     return request({
-        url: import.meta.env.VITE_API_RECEIVER_DUPLICATE,
+        url: RECEIVER_DUPLICATE,
         method: 'get',
         params: param,
     });
@@ -67,7 +71,7 @@ const getReceiverDuplicateAsync = (param: GetReceiverDuplicateRequestModel) => {
 // 정보 수신자 등록(Excel)
 const postReceiverExcelAsync = (param: PostReceiverRequestModel[]) => {
     return request({
-        url: import.meta.env.VITE_API_RECEIVER_EXCEL,
+        url: RECEIVER_EXCEL,
         method: 'post',
         data: param,
     });

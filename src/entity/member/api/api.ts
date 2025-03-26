@@ -16,18 +16,16 @@ import {
 /** 사용자 등록 */
 const joinMembersAsync = (param: JoinMembersRequestModel) => {
     return request({
-        url: import.meta.env.VITE_API_MEMBERS,
+        url: import.meta.env.VITE_BASE_API + import.meta.env.VITE_API_MEMBERS,
         method: 'post',
         data: param,
     });
 };
 
 /** 전체 사용자 조회 */
-const getMembersAsync = (
-    param: GetMembersRequestModel,
-): Promise<AxiosResponse<GetMembersResponseModel>> => {
+const getMembersAsync = (param: GetMembersRequestModel): Promise<AxiosResponse<GetMembersResponseModel>> => {
     return request({
-        url: import.meta.env.VITE_API_MEMBERS,
+        url: import.meta.env.VITE_BASE_API + import.meta.env.VITE_API_MEMBERS,
         method: 'get',
         params: param,
     });
@@ -38,7 +36,7 @@ const getParticularMemberAsync = (
     param: GetParticularMemberRequestModel,
 ): Promise<AxiosResponse<GetParticularMemberResponseModel>> => {
     return request({
-        url: `${import.meta.env.VITE_API_MEMBERS}/${param.memberSeq}`,
+        url: `${import.meta.env.VITE_BASE_API + import.meta.env.VITE_API_MEMBERS}/${param.memberSeq}`,
         method: 'get',
         params: param,
     });
@@ -47,7 +45,7 @@ const getParticularMemberAsync = (
 /** 사용자 수정 */
 const updateMembersAsync = (param: UpdateMembersRequestModel) => {
     return request({
-        url: import.meta.env.VITE_API_MEMBERS,
+        url: import.meta.env.VITE_BASE_API + import.meta.env.VITE_API_MEMBERS,
         method: 'put',
         data: param,
     });
@@ -56,7 +54,7 @@ const updateMembersAsync = (param: UpdateMembersRequestModel) => {
 /** 사용자 삭제 */
 const deleteMembersAsync = (param: DeleteMembersRequestModel) => {
     return request({
-        url: import.meta.env.VITE_API_MEMBERS,
+        url: import.meta.env.VITE_BASE_API + import.meta.env.VITE_API_MEMBERS,
         method: 'delete',
         data: param,
     });
@@ -65,17 +63,10 @@ const deleteMembersAsync = (param: DeleteMembersRequestModel) => {
 /** 중복 ID 체크 */
 const duplicateIdAsync = (param: DuplicateIdRequestModel) => {
     return request({
-        url: import.meta.env.VITE_API_MEMBERS_DUPLICATE,
+        url: import.meta.env.VITE_BASE_API + import.meta.env.VITE_API_MEMBERS_DUPLICATE,
         method: 'get',
         params: param,
     });
 };
 
-export {
-    joinMembersAsync,
-    getMembersAsync,
-    getParticularMemberAsync,
-    updateMembersAsync,
-    deleteMembersAsync,
-    duplicateIdAsync,
-};
+export { joinMembersAsync, getMembersAsync, getParticularMemberAsync, updateMembersAsync, deleteMembersAsync, duplicateIdAsync };

@@ -12,14 +12,12 @@ import {
     UpdateExclusionRequestModel,
 } from '../model/model';
 
-const URL = import.meta.env.VITE_API_EXCLUSION;
+const URL = import.meta.env.VITE_BASE_API + import.meta.env.VITE_API_EXCLUSION;
 
 /**
  * 전체 제외 키워드 목록 조회
  */
-const getExclusionAsync = (
-    params: GetExclusionRequestModel,
-): Promise<AxiosResponse<GetExclusionResponseModel>> =>
+const getExclusionAsync = (params: GetExclusionRequestModel): Promise<AxiosResponse<GetExclusionResponseModel>> =>
     request({
         url: URL,
         method: 'get',
@@ -38,9 +36,7 @@ const getExclusionSeqAsync = (seq: number): Promise<AxiosResponse<GetExclusionSe
 /**
  * 제외 키워드 수정
  */
-const putExclusionAsync = (
-    data: UpdateExclusionRequestModel,
-): Promise<AxiosResponse<ResponseModel>> =>
+const putExclusionAsync = (data: UpdateExclusionRequestModel): Promise<AxiosResponse<ResponseModel>> =>
     request({
         url: URL,
         method: 'put',
@@ -60,19 +56,11 @@ const addExclusionAsync = (data: AddExclusionRequestModel): Promise<AxiosRespons
 /**
  * 제외 키워드 삭제
  */
-const deleteExclusionAsync = (
-    data: DeleteExclusionRequestModel,
-): Promise<AxiosResponse<ResponseModel>> =>
+const deleteExclusionAsync = (data: DeleteExclusionRequestModel): Promise<AxiosResponse<ResponseModel>> =>
     request({
         url: URL,
         method: 'delete',
         data,
     });
 
-export {
-    getExclusionAsync,
-    getExclusionSeqAsync,
-    putExclusionAsync,
-    addExclusionAsync,
-    deleteExclusionAsync,
-};
+export { getExclusionAsync, getExclusionSeqAsync, putExclusionAsync, addExclusionAsync, deleteExclusionAsync };

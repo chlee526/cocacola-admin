@@ -66,14 +66,14 @@ const PageAdminAuth = () => {
         if (boardDatas.list.length > 0) {
             // selectedItem 업데이트
             if (selectedItem) {
-                const updatedItem = boardDatas.list.find(item => item && item.seq === selectedItem.seq);
+                const updatedItem = boardDatas.list.find((item) => item && item.seq === selectedItem.seq);
                 if (!updatedItem) {
                     setSelectedItem(null);
                 }
             }
 
             // checkedItems 업데이트
-            const updatedCheckedItems = checkedItems.filter(seq => boardDatas.list.some(item => item && item.seq === seq));
+            const updatedCheckedItems = checkedItems.filter((seq) => boardDatas.list.some((item) => item && item.seq === seq));
             if (updatedCheckedItems.length !== checkedItems.length) {
                 setCheckedItems(updatedCheckedItems);
             }
@@ -87,17 +87,13 @@ const PageAdminAuth = () => {
     // 게시판 - 수정 요청(멀티 - state만 수정)
     const { mutateAsync: putMultiMutateAsync } = usePutMultiAuthMutation();
     const updateEvent = async (value: PutAuthMultiRequestModel[]) => {
-        const transItems = value.map(item => {
-            return {
-                authSeq: item.authSeq || item?.seq,
-                authState: item.authState || item?.state,
-            };
-        });
+        console.log('권한 수정', value);
+
         try {
-            await putMultiMutateAsync(transItems);
+            await putMultiMutateAsync(value);
             queryClient.invalidateQueries({ queryKey: ['AUTH_LIST'] });
             showAlert(
-                `${transItems.length > 1 ? `${transItems.length}개 ` : ''}권한의 사용여부가 "${transItems[0].authState === 'Y' ? '사용' : '정지'}"(으)로 변경 되었습니다.`,
+                `${value.length > 1 ? `${value.length}개 ` : ''}권한의 사용여부가 "${value[0].authState === 'Y' ? '사용' : '정지'}"(으)로 변경 되었습니다.`,
                 'success',
             );
         } catch (e) {
@@ -144,7 +140,10 @@ const PageAdminAuth = () => {
                             checkedItems={[checkedItems, setCheckedItems]}
                             columns={BoardColumns}
                             boardDatas={boardDatas}
-                            updateEvent={updateEvent}
+                            updateEvent={(val: { seq: number[]; state: 'Y' | 'N' }) => {
+                                const param: PutAuthMultiRequestModel[] = [{ authSeq: val.seq[0], authState: val.state }];
+                                updateEvent(param);
+                            }}
                             deleteEvent={deleteEvent}
                             searchParameter={[getSearchParameter, updateSearchParameter]}
                             menuName={MENU_NAME}

@@ -49,7 +49,7 @@ const useGetReceiverMutation = () => {
     return useMutation({
         mutationFn: async (params: number) => {
             try {
-                const response = await getReceiverAsync(params);
+                const response = await getReceiverAsync(58);
                 const { result } = response.data;
                 return result.data as ReceiverBoardDataModel;
             } catch (error) {

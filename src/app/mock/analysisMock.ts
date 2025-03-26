@@ -1,4 +1,4 @@
-import { http, HttpResponse } from 'msw';
+import { http, HttpResponse, delay } from 'msw';
 
 const analysisHandeler = [
     http.get('./analysis', async ({ request }) => {

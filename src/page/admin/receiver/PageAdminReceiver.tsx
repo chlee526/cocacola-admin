@@ -55,7 +55,9 @@ const PageAdminReceiver = () => {
                         checkedItems={[checkedItems, setCheckedItems]}
                         columns={ConfigBoardColumns}
                         boardDatas={boardData}
-                        updateEvent={updateEvent}
+                        updateEvent={(val: { seq: number[]; state: string }) => {
+                            updateEvent([{ seq: val.seq[0], state: val.state }]);
+                        }}
                         deleteEvent={deleteEvent}
                         searchParameter={[getSearchParameter, updateSearchParameter]}
                         menuName={MENU_NAME}
@@ -70,10 +72,7 @@ const PageAdminReceiver = () => {
                 isOpen={isAsideOpen}
                 handleOpen={setIsAsideOpen}
             >
-                <FeatureReceiverSaveEdit
-                    selectedItem={[selectedItem, setSelectedItem]}
-                    updateEvent={updateEvent}
-                />
+                <FeatureReceiverSaveEdit selectedItem={[selectedItem, setSelectedItem]} updateEvent={updateEvent} />
             </AsideLayout>
         </>
     );

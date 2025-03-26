@@ -3,14 +3,7 @@ import { useMemo } from 'react';
 import { usePersonalizationStore } from '@chlee526/ui-kit-react';
 import { useMutation, useQuery, UseQueryResult } from '@tanstack/react-query';
 
-import {
-    deleteAuthAsync,
-    getAuthAsync,
-    getAuthListAsync,
-    postAuthAsync,
-    putAuthAsync,
-    putMultiAuthAsync,
-} from '../api/adminApi';
+import { deleteAuthAsync, getAuthAsync, getAuthListAsync, postAuthAsync, putAuthAsync, putMultiAuthAsync } from '../api/adminApi';
 import {
     BoardDataModel,
     GetAuthRequestModel,
@@ -24,14 +17,13 @@ import {
 import { searchParameterStore } from '../store/searchParameter';
 
 const getParseList = (list: GetAuthResponseDataModel[]) => {
-    return list.map(item => item.auth);
+    return list.map((item) => item.auth);
 };
 
 // store
 const useSearhParameterStore = () => {
     const { searhParameter, setSearchParameter } = searchParameterStore();
-    const rowLimit =
-        usePersonalizationStore().getPersonalizationDataList('history')?.rowLimit || 100;
+    const rowLimit = usePersonalizationStore().getPersonalizationDataList('history')?.rowLimit || 100;
 
     const getSearchParameter: GetAuthRequestModel = useMemo(() => {
         return {
@@ -51,9 +43,7 @@ const useSearhParameterStore = () => {
 };
 
 // 목록
-const useGetAuthListQuery = (
-    params: GetAuthRequestModel,
-): UseQueryResult<BoardDataModel<AuthBoardDataModel[]>, Error> => {
+const useGetAuthListQuery = (params: GetAuthRequestModel): UseQueryResult<BoardDataModel<AuthBoardDataModel[]>, Error> => {
     return useQuery({
         queryKey: ['AUTH_LIST', params],
         queryFn: async () => {
@@ -80,7 +70,7 @@ const useGetAuthMutation = () => {
     return useMutation({
         mutationFn: async (seq: number) => {
             try {
-                const response = await getAuthAsync(seq);
+                const response = await getAuthAsync(24);
                 const { result } = response.data;
                 return Array.isArray(result.data.auth) ? result.data.auth[0] : result.data.auth;
             } catch (error) {

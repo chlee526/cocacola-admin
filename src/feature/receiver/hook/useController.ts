@@ -42,14 +42,14 @@ const useController = () => {
         if (boardData.list.length > 0) {
             // selectedItem 업데이트
             if (selectedItem) {
-                const updatedItem = boardData.list.find(item => item && item.seq === selectedItem.seq);
+                const updatedItem = boardData.list.find((item) => item && item.seq === selectedItem.seq);
                 if (!updatedItem) {
                     setSelectedItem(null);
                 }
             }
 
             // checkedItems 업데이트
-            const updatedCheckedItems = checkedItems.filter(seq => boardData.list.some(item => item && item.seq === seq));
+            const updatedCheckedItems = checkedItems.filter((seq) => boardData.list.some((item) => item && item.seq === seq));
             if (updatedCheckedItems.length !== checkedItems.length) {
                 setCheckedItems(updatedCheckedItems);
             }

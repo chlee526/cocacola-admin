@@ -4,18 +4,27 @@ import { PATH_KEY } from '@/shared/config';
 
 import { PrivateRoute, PublicRoute } from '../router';
 
-const router = createBrowserRouter([
-    ...PrivateRoute,
-    ...PublicRoute,
+const router = createBrowserRouter(
+    [
+        ...PrivateRoute,
+        ...PublicRoute,
+        {
+            path: '/',
+            element: <Navigate to={PATH_KEY.ROOT} />,
+        },
+        {
+            path: '*',
+            element: <Navigate to={`${PATH_KEY.ERROR}/404`} />,
+        },
+    ],
     {
-        path: '/',
-        element: <Navigate to={PATH_KEY.ROOT} />,
+        // react-router v7 관련 경고콘솔 임시 막기
+        future: {
+            v7_relativeSplatPath: true,
+            v7_startTransition: true,
+        } as any,
     },
-    {
-        path: '*',
-        element: <Navigate to={`${PATH_KEY.ERROR}/404`} />,
-    },
-]);
+);
 
 const provider = () => <RouterProvider router={router} />;
 

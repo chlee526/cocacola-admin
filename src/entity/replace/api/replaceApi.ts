@@ -13,38 +13,30 @@ import {
     UpdateReplaceResponseModel,
 } from '../model/replaceModel';
 
-const getReplacAsync = (
-    param: GetReplaceRequestModel,
-): Promise<AxiosResponse<GetReplaceResponseModel>> =>
+const getReplacAsync = (param: GetReplaceRequestModel): Promise<AxiosResponse<GetReplaceResponseModel>> =>
     request({
-        url: '/v1/replace',
+        url: import.meta.env.VITE_BASE_API + import.meta.env.VITE_API_REPLACE,
         method: 'get',
         params: param,
     });
 
-const updateReplaceAsync = (
-    param: UpdateReplaceRequestModel,
-): Promise<AxiosResponse<UpdateReplaceResponseModel>> =>
+const updateReplaceAsync = (param: UpdateReplaceRequestModel): Promise<AxiosResponse<UpdateReplaceResponseModel>> =>
     request({
-        url: '/v1/replace',
+        url: import.meta.env.VITE_BASE_API + import.meta.env.VITE_API_REPLACE,
         method: 'put',
         data: param,
     });
 
-const addReplaceAsync = (
-    param: AddReplaceRequestModel,
-): Promise<AxiosResponse<AddReplaceResponseModel>> =>
+const addReplaceAsync = (param: AddReplaceRequestModel): Promise<AxiosResponse<AddReplaceResponseModel>> =>
     request({
-        url: '/v1/replace',
+        url: import.meta.env.VITE_BASE_API + import.meta.env.VITE_API_REPLACE,
         method: 'post',
         data: param,
     });
 
-const deleteReplaceAsync = (
-    param: DeleteReplaceRequestModel,
-): Promise<AxiosResponse<DeleteReplaceResponseModel>> =>
+const deleteReplaceAsync = (param: DeleteReplaceRequestModel): Promise<AxiosResponse<DeleteReplaceResponseModel>> =>
     request({
-        url: '/v1/replace',
+        url: import.meta.env.VITE_BASE_API + import.meta.env.VITE_API_REPLACE,
         method: 'delete',
         data: param,
     });

@@ -33,13 +33,13 @@ const useAddExclusion = () => {
 
     return useMutation({
         mutationFn: async (param: AddExclusionRequestModel[]) => {
-            const mutations = param.map(data => addExclusionAsync(data));
+            const mutations = param.map((data) => addExclusionAsync(data));
             return Promise.allSettled(mutations);
         },
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: [QUERY_KEY] });
         },
-        onError: error => {
+        onError: (error) => {
             if (error.message) {
                 showAlert('등록을 실패했습니다.');
             } else {
@@ -50,9 +50,7 @@ const useAddExclusion = () => {
 };
 
 // Get=====================
-const useGetExclusion = (
-    params: GetExclusionRequestModel,
-): UseQueryResult<BoardDataModel<ExclusionBoardDataModel>, Error> =>
+const useGetExclusion = (params: GetExclusionRequestModel): UseQueryResult<BoardDataModel<ExclusionBoardDataModel>, Error> =>
     useQuery({
         queryKey: [QUERY_KEY, params],
         queryFn: async () => {
@@ -62,7 +60,7 @@ const useGetExclusion = (
                 const { result } = response.data;
 
                 // response data parsing
-                const list = result.data.map(data => {
+                const list = result.data.map((data) => {
                     const item: ExclusionBoardDataModel = {
                         ...data,
                         op: {
@@ -92,8 +90,8 @@ const useGetparticularExclusion = (seq: number): UseQueryResult<ExclusionBoardDa
     useQuery({
         queryKey: ['PARTICULAR_EXCLUSION'],
         queryFn: async () =>
-            getExclusionSeqAsync(seq)
-                .then(response => {
+            getExclusionSeqAsync(30)
+                .then((response) => {
                     const { result } = response.data;
 
                     return {
@@ -105,7 +103,7 @@ const useGetparticularExclusion = (seq: number): UseQueryResult<ExclusionBoardDa
                         },
                     };
                 })
-                .catch(error => {
+                .catch((error) => {
                     console.error('특정 제외 키워드 조회 에러', error);
                     throw error;
                 }),
@@ -123,7 +121,7 @@ const useUpdateExclusion = () => {
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: [QUERY_KEY] });
         },
-        onError: error => {
+        onError: (error) => {
             if (error.message) {
                 showAlert('수정을 실패했습니다.');
             } else {
@@ -144,7 +142,7 @@ const useDeleteExclusion = () => {
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: [QUERY_KEY] });
         },
-        onError: error => {
+        onError: (error) => {
             if (error.message) {
                 showAlert('삭제를 실패했습니다.');
             } else {
@@ -157,8 +155,7 @@ const useDeleteExclusion = () => {
 // store
 const useSearhParameterStore = () => {
     const { searhParameter, setSearchParameter } = searchParameterStore();
-    const rowLimit =
-        usePersonalizationStore().getPersonalizationDataList('exclusion')?.rowLimit || 100;
+    const rowLimit = usePersonalizationStore().getPersonalizationDataList('exclusion')?.rowLimit || 100;
 
     const getSearchParameter: GetExclusionRequestModel = useMemo(() => {
         return {

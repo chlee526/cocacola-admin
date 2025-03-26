@@ -26,9 +26,9 @@ const useGetMemberList = (searchParam: GetMembersRequestModel): UseQueryResult<B
         queryKey: ['MEMBER_LIST', searchParam],
 
         queryFn: () =>
-            getMembersAsync(searchParam).then(response => {
+            getMembersAsync(searchParam).then((response) => {
                 const { result } = response.data;
-                const updatedList = result.data?.map(item => {
+                const updatedList = result.data?.map((item) => {
                     return Object.fromEntries(
                         Object.entries(item as MemberItem).map(([key, value]) => [key, value === null ? '' : value]),
                     );
@@ -44,7 +44,8 @@ const useGetMemberList = (searchParam: GetMembersRequestModel): UseQueryResult<B
 
 // 특정 사용자 조회
 const useGetParticularMember = (memberSeq: number) => {
-    const param = { memberSeq };
+    // const param = { memberSeq };
+    const param = { memberSeq: 116 }; // mockup 데이터
     const { showAlert } = useAlert();
 
     return useQuery({
@@ -52,11 +53,11 @@ const useGetParticularMember = (memberSeq: number) => {
 
         queryFn: async () =>
             getParticularMemberAsync(param)
-                .then(res => {
+                .then((res) => {
                     const { result } = res.data;
                     return result.data;
                 })
-                .catch(err => {
+                .catch((err) => {
                     console.error('특정 사용자 조회 에러', err);
                     if (err.response.data.code !== 'M002') {
                         showAlert('특정 사용자 조회에 실패했습니다.');
@@ -75,11 +76,11 @@ const useJoinMember = () => {
 
     return useMutation({
         mutationFn: async (param: JoinMembersRequestModel) => joinMembersAsync(param),
-        onSuccess: data => {
+        onSuccess: (data) => {
             console.log('가입 성공', data);
             queryClient.invalidateQueries({ queryKey: ['MEMBER_LIST'] });
         },
-        onError: err => {
+        onError: (err) => {
             console.error('가입 에러', err);
             showAlert('가입에 실패했습니다.');
         },
@@ -93,14 +94,14 @@ const useUpdateMember = () => {
 
     return useMutation({
         mutationFn: async (params: UpdateMembersRequestModel[]) => {
-            const mutations = params.map(param => updateMembersAsync(param));
+            const mutations = params.map((param) => updateMembersAsync(param));
             return Promise.allSettled(mutations);
         },
-        onSuccess: data => {
+        onSuccess: (data) => {
             console.log('수정 성공', data);
             queryClient.invalidateQueries({ queryKey: ['MEMBER_LIST'] });
         },
-        onError: err => {
+        onError: (err) => {
             console.error('수정 에러', err);
             showAlert('수정 실패했습니다.');
         },
@@ -114,11 +115,11 @@ const useDeleteMember = () => {
 
     return useMutation({
         mutationFn: async (param: DeleteMembersRequestModel) => deleteMembersAsync(param),
-        onSuccess: data => {
+        onSuccess: (data) => {
             console.log('삭제 성공', data);
             queryClient.invalidateQueries({ queryKey: ['MEMBER_LIST'] });
         },
-        onError: err => {
+        onError: (err) => {
             console.error('삭제 에러', err);
             showAlert('삭제 실패했습니다.');
         },

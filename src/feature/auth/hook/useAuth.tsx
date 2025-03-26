@@ -37,6 +37,7 @@ const useLogin = () => {
     });
 
     const handleLoginSuccess = () => {
+        console.log('로그인 성공!!!');
         setLoginState(true);
         queryClient.invalidateQueries({ queryKey: ['userInfo', 'myAuth'] });
     };
@@ -48,9 +49,7 @@ const useLogin = () => {
             setOpenDialog(true);
         } else {
             showAlert(
-                error.response?.status === 401
-                    ? '아이디 혹은 비밀번호가 일치하지 않습니다.'
-                    : '알 수 없는 에러가 발생했습니다.',
+                error.response?.status === 401 ? '아이디 혹은 비밀번호가 일치하지 않습니다.' : '알 수 없는 에러가 발생했습니다.',
                 'error',
             );
         }
@@ -101,7 +100,7 @@ const useLogout = () => {
             setAuthMethodsState({});
             queryClient.clear();
         },
-        onError: error => {
+        onError: (error) => {
             showBoundary(error); // 에러바운더리로 전달
         },
     });
@@ -109,8 +108,7 @@ const useLogout = () => {
 
 /** 사용자 인증 & 권한 메뉴 훅 */
 const useAuth = () => {
-    const { getLoginState, getUserState, setUserState, setAuthMenuState, setAuthMethodsState } =
-        useAuthStore();
+    const { getLoginState, getUserState, setUserState, setAuthMenuState, setAuthMethodsState } = useAuthStore();
     const { showPageLoader } = usePageLoaderContext();
     const { showBoundary } = useErrorBoundary();
     const isLogin = getLoginState();
@@ -147,7 +145,6 @@ const useAuth = () => {
         if (isSuccess) {
             const userInfo = userInfoResult.data?.data;
             const authList = myAuthResult.data?.data.auth.menuAuthList;
-
             setUserState(structuredClone(userInfo));
             setAuthMenuState(structuredClone(transformMenuData(authList)));
             setAuthMethodsState(structuredClone(transformMenuMethods(authList)));

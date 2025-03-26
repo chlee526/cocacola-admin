@@ -50,7 +50,7 @@ const PageAdminKeyword = () => {
             defaultColumns[0].disabled = false;
             setBoardColumns(defaultColumns);
         }
-    }, [selectedCategory, boardColumns]);
+    }, [selectedCategory]);
 
     return (
         <>

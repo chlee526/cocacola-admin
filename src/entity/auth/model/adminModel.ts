@@ -54,8 +54,6 @@ interface PutAuthRequestModel {
 interface PutAuthMultiRequestModel {
     authSeq?: number;
     authState?: 'Y' | 'N';
-    seq?: number;
-    state?: 'Y' | 'N';
 }
 interface DeleteAuthRequestModel {
     seq: number[];

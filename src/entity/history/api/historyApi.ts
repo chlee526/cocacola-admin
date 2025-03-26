@@ -4,11 +4,11 @@ import { request } from '@/shared/library';
 
 import { GetHistoryRequestModel, GetHistoryResponseModel } from '../model/historyModel';
 
-const getHistoryAsync = (
-    param: GetHistoryRequestModel,
-): Promise<AxiosResponse<GetHistoryResponseModel>> =>
+const URL = import.meta.env.VITE_BASE_API + import.meta.env.VITE_API_HISTORY;
+
+const getHistoryAsync = (param: GetHistoryRequestModel): Promise<AxiosResponse<GetHistoryResponseModel>> =>
     request({
-        url: '/v1/history/login',
+        url: URL,
         method: 'get',
         params: param,
     });

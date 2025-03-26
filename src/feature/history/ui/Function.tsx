@@ -1,11 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import {
-    SearchChipType,
-    WidgetSearchBar,
-    InputBoxDefaultProps,
-    SelectBoxListType,
-} from '@chlee526/ui-kit-react';
+import { SearchChipType, WidgetSearchBar, InputBoxDefaultProps, SelectBoxListType } from '@chlee526/ui-kit-react';
 
 import { GetHistoryRequestModel } from '@/entity/history/model/historyModel';
 import { COMMON_HISTORY_FILTER } from '@/shared/config/common';
@@ -20,7 +15,7 @@ interface OwnProps {
 
 const Function = ({ searchParameter: ownSearchParam }: OwnProps) => {
     const [searchParameter, setSearchParameter] = ownSearchParam;
-    console.log('function  >>  ', searchParameter);
+    // console.log('function  >>  ', searchParameter);
     const [keyword, setKeyword] = useState<SearchChipType>({
         searchType: 1,
         searchKeyword: '',
