@@ -1,4 +1,4 @@
-# [PaaS 예행] - 코카콜라
+# [PaaS-Admin 예행] - 코카콜라
 
 ### 목차
 
@@ -24,9 +24,9 @@
 
 ### Project 정보
 
--   [PaaS] 예행 프로젝트 - 코카콜라
--   node: - v18
--   SSL
+- [PaaS-Admin] 예행 프로젝트 - 코카콜라
+- node: - v18
+- SSL
 
 > <span style="color:red">env(환경설정) 파일은 외부로 유출되지 않도록 유의</span>
 
@@ -34,30 +34,30 @@
 
 ### 브랜치 전략
 
--   `main`: 운영 [운영 서버 반영 용]
--   `hotfix/경로-수정기능(페이지/컨텐츠/모듈/컴포넌트)`: 운영 긴급 패치
--   `release`: 운영 반영 전 테스트 [개발 서버 반영 용]
--   `devel`: 개발 통합
--   `feature/경로-기능(페이지/컨텐츠/모듈/컴포넌트)`: 기능별 개발
+- `main`: 운영 [운영 서버 반영 용]
+- `hotfix/경로-수정기능(페이지/컨텐츠/모듈/컴포넌트)`: 운영 긴급 패치
+- `release`: 운영 반영 전 테스트 [개발 서버 반영 용]
+- `devel`: 개발 통합
+- `feature/경로-기능(페이지/컨텐츠/모듈/컴포넌트)`: 기능별 개발
 
 ---
 
 ### 라이브러리
 
--   `msw`: MSW 목업
--   `mui/material`: MUI 디자인 시스템
--   `mui/icons-material`: MUI 디자인 시스템 - 아이콘
--   `emotion/styled`: MUI CSS-in-JS
--   `vite-plugin-mkcert`: 로컬 개발용 SSL
--   `zustand`: 상태관리
--   `react-cookie`: 쿠키관리
--   `react-query`: 패칭
--   `isomorphic-dompurify`: XSS보안
--   `eslint-plugin-import`: eslint import 관리(순서)
--   `lodash`: 유틸리티
--   `rsn-react-ui`: 커스텀 UI(자체 제작한 UI로 추후에 추가)
--   `framer-motion`: Animation 라이브러리
--   `react-hook-form`: Form 유효성 검사
+- `msw`: MSW 목업
+- `mui/material`: MUI 디자인 시스템
+- `mui/icons-material`: MUI 디자인 시스템 - 아이콘
+- `emotion/styled`: MUI CSS-in-JS
+- `vite-plugin-mkcert`: 로컬 개발용 SSL
+- `zustand`: 상태관리
+- `react-cookie`: 쿠키관리
+- `react-query`: 패칭
+- `isomorphic-dompurify`: XSS보안
+- `eslint-plugin-import`: eslint import 관리(순서)
+- `lodash`: 유틸리티
+- `rsn-react-ui`: 커스텀 UI(자체 제작한 UI로 추후에 추가)
+- `framer-motion`: Animation 라이브러리
+- `react-hook-form`: Form 유효성 검사
 
 ---
 
@@ -66,42 +66,30 @@
 #### 구조
 
 FSD(Feature Sliced Design) 아키텍처로 구조 설계
-Notion링크 참조(https://www.notion.so/93c87a1f60fd46cb88816790ef124c3d)
+Notion링크 참조(https://pebble-hose-a5c.notion.site/fsd-PaaS-Admin-19d17ddbfbfa80d69f32d0f2622b713f)
 
 #### 코딩 컨벤션
 
-Notion링크 참조(https://www.notion.so/1aa27abde5804b85829c30f6076121c3)
+Notion링크 참조(https://pebble-hose-a5c.notion.site/PaaS-Admin-19d17ddbfbfa8013acdeff40f2731ef3)
 
 ---
 
 ### Server 정보
 
--   Admin(운영) : -
--   Admin(개발) : -
--   Dashboard(운영) : -
--   Dashboard(개발) : -
-
----
-
-### Local Server 설정
-
--   http://fe.cocacola.devel.com:8701/
--   SSL(자체적으로 SSL키 생성 후 사용)
-
-```
-// 서버 시작
-npm run dev
-```
+- Admin(운영) : -
+- Admin(개발) : -
+- Dashboard(운영) : -
+- Dashboard(개발) : -
 
 ---
 
 ### MSW 설정
 
--   Local 개발용 Mockup API
--   기본 경로 : src/api/mocks/...
--   browser.js ···························// msw 기본 셋팅
--   common_handlers.js ···················// 공용 API
--   keyword_mng_handlers.js ··············// 키워드 관리 API
+- Local 개발용 Mockup API
+- 기본 경로 : src/api/mocks/...
+- browser.js ···························// msw 기본 셋팅
+- common_handlers.js ···················// 공용 API
+- keyword_mng_handlers.js ··············// 키워드 관리 API
 
 ```
 // mockup service worker 실행파일 생성
@@ -114,11 +102,10 @@ chrome://flags/#unsafely-treat-insecure-origin-as-secure
 // 개발
 ```
 
--   크롬 브라우저 기준 ServiceWorker 추가
--   도메인에 아래 주소 입력
-    chrome://flags/#unsafely-treat-insecure-origin-as-secure
--   입력창에 개발도메인, 실 API도메인 입력
-    ![image](/uploads/502a42275f9cb8ebe7bbe15928413d04/image.png)
+- 크롬 브라우저 기준 ServiceWorker 추가
+- 도메인에 아래 주소 입력
+  chrome://flags/#unsafely-treat-insecure-origin-as-secure
+- 입력창에 개발도메인, 실 API도메인 입력
 
 ---
 
