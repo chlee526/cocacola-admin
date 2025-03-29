@@ -1,4 +1,4 @@
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+// import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 import { AlertProvider } from '@/shared/store';
 import { CustomAlert } from '@/shared/ui';
@@ -19,7 +19,7 @@ const App = () => {
                     </PageLoaderProvider>
                 </AlertProvider>
             </ThemeProvider>
-            {process.env.NODE_ENV === 'development' && <ReactQueryDevtools />}
+            {/* {process.env.NODE_ENV === 'development' && <ReactQueryDevtools />} */}
         </QueryClientProvider>
     );
 };

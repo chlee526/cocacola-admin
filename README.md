@@ -28,8 +28,6 @@
 - node: - v18
 - SSL
 
-> <span style="color:red">env(환경설정) 파일은 외부로 유출되지 않도록 유의</span>
-
 ---
 
 ### 브랜치 전략
